@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="favicon.ico">
-    <title>{{ $title }} - LaraTiny</title>
+    <title>{{ $title }} - {{ config('app.name', 'Laravel') }}</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('/') }}css/simplebar.css">
     <!-- Fonts CSS -->

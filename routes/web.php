@@ -33,6 +33,8 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     // Route Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('/profile', [DashboardController::class, 'update'])->name('profile.update');
 
     // Data Master
     // Route User

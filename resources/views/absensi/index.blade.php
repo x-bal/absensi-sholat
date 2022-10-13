@@ -56,7 +56,7 @@
                                 <th class="text-dark">Nama Siswa</th>
                                 <th class="text-dark">Angkatan / Jurusan</th>
                                 <th class="text-dark">Keterangan</th>
-                                <th class="text-dark">Action</th>
+                                {{-- <th class="text-dark">Action</th> --}}
                             </tr>
                         </thead>
 
@@ -73,14 +73,15 @@
                                     {{ $absen->siswa->jurusan->nama_jurusan }}
                                 </td>
                                 <td>{{ $absen->keterangan }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="{{ route('absensi.edit', $absen->id) }}" class="btn btn-success text-light"><i class="fe fe-edit align-middle"></i></a>
-                                    <form id="form-delete" action="{{ route('absensi.destroy', $absen->id) }}" method="post" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="button" class="btn btn-danger btn-delete"><i class="fe fe-trash align-middle"></i></button>
-                                    </form>
+                                <form id="form-delete" action="{{ route('absensi.destroy', $absen->id) }}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="button" class="btn btn-danger btn-delete"><i class="fe fe-trash align-middle"></i></button>
+                                </form>
                                 </td>
+                                --}}
                             </tr>
                             @endforeach
                         </tbody>

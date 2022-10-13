@@ -117,7 +117,10 @@ class ApiController extends Controller
                             return response()->json([
                                 'status' => 'failed',
                                 'message' => 'Tidak ada jadwal saat ini',
-                                'siswa' => $siswa
+                                'nama_siswa' => $siswa->nama_siswa,
+                                'nisn' => $siswa->nisn,
+                                'jurusan' => $siswa->jurusan->nama_jurusan,
+                                'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
                             ]);
                         }
 
@@ -146,28 +149,40 @@ class ApiController extends Controller
                                 return response()->json([
                                     'status' => 'success',
                                     'message' => 'Berhasil absensi waktu ' . $jdw['nama_jadwal'],
-                                    'siswa' => $siswa
+                                    'nama_siswa' => $siswa->nama_siswa,
+                                    'nisn' => $siswa->nisn,
+                                    'jurusan' => $siswa->jurusan->nama_jurusan,
+                                    'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
                                 ]);
                             } catch (\Throwable $th) {
                                 DB::rollBack();
                                 return response()->json([
                                     'status' => 'failed',
                                     'message' => $th->getMessage(),
-                                    'siswa' => $siswa
+                                    'nama_siswa' => $siswa->nama_siswa,
+                                    'nisn' => $siswa->nisn,
+                                    'jurusan' => $siswa->jurusan->nama_jurusan,
+                                    'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
                                 ]);
                             }
                         } else {
                             return response()->json([
                                 'status' => 'failed',
                                 'message' => 'Anda sudah absensi di jadwal tersebut',
-                                'siswa' => $siswa
+                                'nama_siswa' => $siswa->nama_siswa,
+                                'nisn' => $siswa->nisn,
+                                'jurusan' => $siswa->jurusan->nama_jurusan,
+                                'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
                             ]);
                         }
                     } else {
                         return response()->json([
                             'status' => 'failed',
                             'message' => 'Data siswa belum di verifikasi',
-                            'siswa' => $siswa
+                            'nama_siswa' => $siswa->nama_siswa,
+                            'nisn' => $siswa->nisn,
+                            'jurusan' => $siswa->jurusan->nama_jurusan,
+                            'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
                         ]);
                     }
                 } else {
