@@ -176,7 +176,17 @@ class ApiController extends Controller
                         'message' => 'Data siswa tidak ditemukan'
                     ]);
                 }
+            } else {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Device tidak ditemukan'
+                ]);
             }
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Salah parameter'
+            ]);
         }
     }
 }
