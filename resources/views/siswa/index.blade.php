@@ -30,7 +30,7 @@
                                 <td class="text-center">
                                     <img src="{{ asset('storage/'. $sw->foto) }}" alt="" class="avatar-img rounded-circle" width="50">
                                 </td>
-                                <td>{{ $sw->rfid }}</td>
+                                <td>{{ $sw->uid }}</td>
                                 <td>
                                     {{ $sw->nipd }} / {{ $sw->nisn }}
                                 </td>

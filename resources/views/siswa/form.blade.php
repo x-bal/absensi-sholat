@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group mb-3">
                         <label for="rfid"><sup class="text-danger">*</sup> Rfid</label>
-                        <input type="text" disabled name="rfid" id="rfid" class="form-control" value="{{ $siswa->rfid ?? old('rfid') }}">
+                        <input type="text" disabled name="rfid" id="rfid" class="form-control" value="{{ $siswa->uid ?? old('rfid') }}">
 
                         @error('rfid')
                         <small class="text-danger">{{ $message }}</small>
