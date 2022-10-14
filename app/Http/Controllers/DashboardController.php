@@ -42,7 +42,7 @@ class DashboardController extends Controller
             }
 
             if ($request->file('foto')) {
-                Storage::delete($user->foto);
+                $user->foto != NULL ? Storage::delete($user->foto) : '';
                 $foto = $request->file('foto');
                 $fotoUrl = $foto->storeAs('users', Str::slug($request->name) . '-' . Str::random(6) . '.' . $foto->extension());
             } else {
@@ -53,6 +53,8 @@ class DashboardController extends Controller
             $attr['foto'] = $fotoUrl;
 
             $user->update($attr);
+
+            DB::commit();
 
             return back()->with('success', 'Update profile berhasil');
         } catch (\Throwable $th) {

@@ -80,7 +80,7 @@ class UserController extends Controller
             $attr = $updateUserRequest->all();
 
             if ($updateUserRequest->file('foto')) {
-                Storage::delete($user->foto);
+                $user->foto != NULL ? Storage::delete($user->foto) : '';
                 $foto = $updateUserRequest->file('foto');
                 $fotoUrl = $foto->storeAs('users', Str::slug($updateUserRequest->name) . '-' . Str::random(6) . '.' . $foto->extension());
             } else {
