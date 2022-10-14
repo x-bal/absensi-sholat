@@ -9,11 +9,11 @@ use App\Models\Jurusan;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class RfidController extends Controller
 {
-
     public function index()
     {
         $rfid = Siswa::where('status', 0)->get();

@@ -35,6 +35,7 @@
                     <span class="ml-3 item-text">Data Master</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100 {{ request()->is('users*') || request()->is('jurusan*') || request()->is('angkatan*') || request()->is('jadwal*') || request()->is('siswa*') ? 'show' : '' }}" id="data-master">
+                    @can('isAdmin')
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{ route('users.index') }}"><span class="ml-1 item-text">Data User</span>
                         </a>
@@ -51,6 +52,7 @@
                         <a class="nav-link pl-3" href="{{ route('jadwal.index') }}"><span class="ml-1 item-text">Data Jadwal</span>
                         </a>
                     </li>
+                    @endcan
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{ route('siswa.index') }}"><span class="ml-1 item-text">Data Siswa</span>
                         </a>
@@ -66,10 +68,12 @@
                     <span class="ml-3 item-text">Data Devices</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100 {{ request()->is('device*') || request()->is('rfid*') || request()->is('history*') ? 'show' : '' }}" id="data-devices">
+                    @can('isAdmin')
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{ route('device.index') }}"><span class="ml-1 item-text">Data Device</span>
                         </a>
                     </li>
+                    @endcan
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{ route('rfid.index') }}"><span class="ml-1 item-text">Data Rfid</span>
                         </a>
