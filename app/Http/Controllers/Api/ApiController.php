@@ -28,7 +28,7 @@ class ApiController extends Controller
             } else {
                 return response()->json([
                     'status' => 'failed',
-                    'message' => 'Device tidak ditemukan',
+                    'message' => 'Device tidak ada',
                 ]);
             }
         } else {
@@ -50,7 +50,7 @@ class ApiController extends Controller
                 if ($uid) {
                     return response()->json([
                         'status' => 'failed',
-                        'message' => 'Uid sudah terdaftar'
+                        'message' => 'UID sudah terdaftar'
                     ]);
                 } else {
                     try {
@@ -69,7 +69,7 @@ class ApiController extends Controller
 
                         return response()->json([
                             'status' => 'success',
-                            'message' => 'Card berhasil ditambahkan'
+                            'message' => 'Berhasil ditambahkan'
                         ]);
                     } catch (\Throwable $th) {
                         return response()->json([
@@ -81,7 +81,7 @@ class ApiController extends Controller
             } else {
                 return response()->json([
                     'status' => 'failed',
-                    'message' => 'Device tidak ditemukan'
+                    'message' => 'Device tidak ada'
                 ]);
             }
         } else {
@@ -116,7 +116,7 @@ class ApiController extends Controller
                         if ($jdw == null) {
                             return response()->json([
                                 'status' => 'failed',
-                                'message' => 'Tidak ada jadwal saat ini',
+                                'message' => 'Tidak ada jadwal',
                                 'nama_siswa' => $siswa->nama_siswa,
                                 'nisn' => $siswa->nisn,
                                 'jurusan' => $siswa->jurusan->nama_jurusan,
@@ -168,7 +168,7 @@ class ApiController extends Controller
                         } else {
                             return response()->json([
                                 'status' => 'failed',
-                                'message' => 'Anda sudah absensi di jadwal tersebut',
+                                'message' => 'Anda sudah absensi',
                                 'nama_siswa' => $siswa->nama_siswa,
                                 'nisn' => $siswa->nisn,
                                 'jurusan' => $siswa->jurusan->nama_jurusan,
@@ -178,7 +178,7 @@ class ApiController extends Controller
                     } else {
                         return response()->json([
                             'status' => 'failed',
-                            'message' => 'Data siswa belum di verifikasi',
+                            'message' => 'UID belum verifikasi',
                             'nama_siswa' => $siswa->nama_siswa,
                             'nisn' => $siswa->nisn,
                             'jurusan' => $siswa->jurusan->nama_jurusan,
@@ -188,13 +188,13 @@ class ApiController extends Controller
                 } else {
                     return response()->json([
                         'status' => 'failed',
-                        'message' => 'Data siswa tidak ditemukan'
+                        'message' => 'Data siswa tidak ada'
                     ]);
                 }
             } else {
                 return response()->json([
                     'status' => 'failed',
-                    'message' => 'Device tidak ditemukan'
+                    'message' => 'Device tidak ada'
                 ]);
             }
         } else {
