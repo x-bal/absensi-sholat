@@ -33,24 +33,24 @@ class DashboardController extends Controller
         try {
             DB::beginTransaction();
 
+            $user = User::find(auth()->user()->id);
+
             if ($request->password) {
                 $pass = bcrypt($request->password);
             } else {
-                $pass = auth()->user()->password;
+                $pass = $user->password;
             }
 
             if ($request->file('foto')) {
-                Storage::delete(auth()->user()->foto);
+                Storage::delete($user->foto);
                 $foto = $request->file('foto');
                 $fotoUrl = $foto->storeAs('users', Str::slug($request->name) . '-' . Str::random(6) . '.' . $foto->extension());
             } else {
-                $fotoUrl = auth()->user()->foto;
+                $fotoUrl = $user->foto;
             }
 
             $attr['password'] = $pass;
             $attr['foto'] = $fotoUrl;
-
-            $user = User::find(auth()->user()->id);
 
             $user->update($attr);
 
