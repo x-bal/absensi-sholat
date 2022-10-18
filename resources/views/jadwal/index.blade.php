@@ -17,6 +17,7 @@
                                 <th class="text-dark">Nama Jadwal</th>
                                 <th class="text-dark">Mulai</th>
                                 <th class="text-dark">Selesai</th>
+                                <th class="text-dark">Telat</th>
                                 <th class="text-dark">Status</th>
                                 <th class="text-dark">Action</th>
                             </tr>
@@ -29,6 +30,7 @@
                                 <td>{{ $jdw->nama_jadwal }}</td>
                                 <td>{{ $jdw->mulai }}</td>
                                 <td>{{ $jdw->selesai }}</td>
+                                <td>{{ $jdw->telat }}</td>
                                 <td>
                                     <div class="custom-control custom-switch">
                                         <input type="checkbox" class="custom-control-input status" value="{{ $jdw->status }}" id="status-{{ $jdw->id }}" data-id="{{ $jdw->id }}" {{ $jdw->status == 1 ? 'checked' : '' }}>

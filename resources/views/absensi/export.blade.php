@@ -9,6 +9,7 @@
                 <th class="text-dark text-center">Angkatan / Jurusan</th>
                 @foreach(App\Models\Jadwal::where('status', 1)->get() as $jadwal)
                 <th>{{ $jadwal->nama_jadwal }}</th>
+                <th>Waktu</th>
                 @endforeach
             </tr>
         </thead>
@@ -22,7 +23,12 @@
                 <td>{{ $absen->siswa->nama_siswa }}</td>
                 <td>{{ $absen->siswa->angkatan->nama_angkatan }} - {{ $absen->siswa->jurusan->nama_jurusan }}</td>
                 @foreach(App\Models\Jadwal::where('status',1)->get() as $jdw)
-                <td>{{ App\Models\Absensi::where('siswa_id', $absen->siswa_id)->where('jadwal_id', $jdw->id)->where('tanggal', $absen->tanggal)->first()->keterangan ?? '-' }}</td>
+                <td>
+                    {{ App\Models\Absensi::where('siswa_id', $absen->siswa_id)->where('jadwal_id', $jdw->id)->where('tanggal', $absen->tanggal)->first()->keterangan ?? '-' }}
+                </td>
+                <td>
+                    {{ App\Models\Absensi::where('siswa_id', $absen->siswa_id)->where('jadwal_id', $jdw->id)->where('tanggal', $absen->tanggal)->first()->created_at ?? '-' }}
+                </td>
                 @endforeach
             </tr>
             @endforeach

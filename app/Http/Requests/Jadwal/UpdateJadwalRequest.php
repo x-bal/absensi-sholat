@@ -27,6 +27,7 @@ class UpdateJadwalRequest extends FormRequest
             'nama_jadwal' => 'required|string|unique:jadwals,nama_jadwal,' . $this->jadwal->id,
             'mulai' => 'required|string',
             'selesai' => 'required|string',
+            'telat' => 'required|string',
         ];
     }
 }

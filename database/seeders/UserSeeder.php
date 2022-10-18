@@ -38,18 +38,21 @@ class UserSeeder extends Seeder
             'nama_jadwal' => 'Shubuh',
             'mulai' => '04:00',
             'selesai' => '05:00',
+            'telat' => '05:00',
         ]);
 
         Jadwal::create([
             'nama_jadwal' => 'Dzuhur',
             'mulai' => '11:00',
             'selesai' => '12:00',
+            'telat' => '12:00',
         ]);
 
         Jadwal::create([
             'nama_jadwal' => 'Ashar',
             'mulai' => '15:00',
             'selesai' => '16:00',
+            'telat' => '16:00',
         ]);
 
 
@@ -57,6 +60,7 @@ class UserSeeder extends Seeder
             'nama_jadwal' => 'Magrib',
             'mulai' => '18:00',
             'selesai' => '18:30',
+            'telat' => '18:30',
         ]);
 
 
@@ -64,6 +68,7 @@ class UserSeeder extends Seeder
             'nama_jadwal' => 'Isya',
             'mulai' => '19:00',
             'selesai' => '20:00',
+            'telat' => '20:00',
         ]);
 
         $angkatan = Angkatan::create([

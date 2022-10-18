@@ -97,6 +97,10 @@
                         <a class="nav-link pl-3" href="{{ route('absensi.index') }}"><span class="ml-1 item-text">Absensi Siswa</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{ route('absensi.rekap') }}"><span class="ml-1 item-text">Rekap Absensi</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

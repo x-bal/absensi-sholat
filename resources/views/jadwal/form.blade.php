@@ -38,6 +38,15 @@
                     </div>
 
                     <div class="form-group mb-3">
+                        <label for="telat"><sup class="text-danger">*</sup> Telat</label>
+                        <input type="time" name="telat" id="telat" class="form-control" value="{{ $jadwal->telat ?? old('telat') }}">
+
+                        @error('telat')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-3">
                         <button type="submit" class="btn btn-primary"><i class="fe fe-save"></i> Save</button>
                     </div>
                 </form>

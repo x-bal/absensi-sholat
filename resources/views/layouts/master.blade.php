@@ -22,6 +22,8 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('/') }}css/app-light.css" id="lightTheme">
     <link rel="stylesheet" href="{{ asset('/') }}css/app-dark.css" id="darkTheme" disabled>
+
+    @stack('style')
 </head>
 
 <body class="vertical light">
@@ -115,11 +117,20 @@
         })
 
         $('.datetimes').daterangepicker({
-            // startDate: moment().startOf('hour'),
-            // endDate: moment().startOf('hour').add(32, 'hour'),
             locale: {
                 format: 'M/DD/YYYY'
             }
+        });
+
+        $('.datetimes-rekap').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            // locale: {
+            //     format: 'MM/YYYY'
+            // }
+        }).on('hide.daterangepicker', function(ev, picker) {
+            $('.table-condensed tbody tr:nth-child(2) td').click();
+            // alert(picker.startDate.format('MM/YYYY'));
         });
     </script>
 

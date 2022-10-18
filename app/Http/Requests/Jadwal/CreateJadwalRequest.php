@@ -27,6 +27,7 @@ class CreateJadwalRequest extends FormRequest
             'nama_jadwal' => 'required|string|unique:jadwals',
             'mulai' => 'required|string',
             'selesai' => 'required|string',
+            'telat' => 'required|string',
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Exports\AbsensiExport;
 use App\Models\Absensi;
 use App\Models\Angkatan;
 use App\Models\Jurusan;
+use App\Models\Siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -46,36 +47,6 @@ class AbsensiController extends Controller
         return view('absensi.index', compact('absensi', 'title', 'angkatan', 'jurusan'));
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Absensi $absensi)
-    {
-        //
-    }
-
-    public function edit(Absensi $absensi)
-    {
-        //
-    }
-
-    public function update(Request $request, Absensi $absensi)
-    {
-        //
-    }
-
-    public function destroy(Absensi $absensi)
-    {
-        //
-    }
-
     public function export(Request $request)
     {
         if ($request->tanggal && $request->angkatan == 'all' || $request->jurusan == 'all') {
@@ -101,5 +72,29 @@ class AbsensiController extends Controller
         }
 
         return \Excel::download(new AbsensiExport($absensi, $title), $title . '.xlsx');
+    }
+
+    public function rekap(Request $request)
+    {
+        $angkatan = Angkatan::get();
+        $jurusan = Jurusan::get();
+
+        $date = Carbon::now('Asia/Jakarta');
+        $absensi = Absensi::whereMonth('tanggal', $date->format('m'))->whereYear('tanggal', $date->format('Y'))->latest()->get();
+        $siswa = Siswa::where('status', 1)->get();
+
+        $title = 'Rekap Absensi Siswa - ' . Carbon::now('Asia/Jakarta')->format('F Y');
+
+        $bulan = $date->format('m');
+        $year = $date->format('Y');
+
+        if ($request->bulan) {
+            $year = explode('-', $request->bulan)[0];
+            $bulan = explode('-', $request->bulan)[1];
+
+            $title = 'Rekap Absensi Siswa - ' . Carbon::create()->month($bulan)->format('F') . ' ' . Carbon::create()->year($year)->format('Y');
+        }
+
+        return view('absensi.rekap', compact('bulan', 'year', 'title', 'angkatan', 'jurusan', 'siswa'));
     }
 }

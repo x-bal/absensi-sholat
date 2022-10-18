@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_jadwal');
             $table->string('mulai');
             $table->string('selesai');
+            $table->string('telat');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

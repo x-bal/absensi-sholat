@@ -108,7 +108,7 @@ class ApiController extends Controller
                         $jdw = [];
 
                         foreach ($jadwals as $jadwal) {
-                            if ($waktu->between($jadwal->mulai, $jadwal->selesai, true)) {
+                            if ($waktu->between($jadwal->mulai, $jadwal->telat, true)) {
                                 $jdw = $jadwal;
                             }
                         }
@@ -142,6 +142,44 @@ class ApiController extends Controller
                                 History::create([
                                     'device_id' => $device->id,
                                     'keterangan' => 'Hadir waktu ' . $jdw['nama_jadwal']
+                                ]);
+
+                                DB::commit();
+
+                                return response()->json([
+                                    'status' => 'success',
+                                    'message' => 'Berhasil absensi waktu ' . $jdw['nama_jadwal'],
+                                    'nama_siswa' => $siswa->nama_siswa,
+                                    'nisn' => $siswa->nisn,
+                                    'jurusan' => $siswa->jurusan->nama_jurusan,
+                                    'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
+                                ]);
+                            } catch (\Throwable $th) {
+                                DB::rollBack();
+                                return response()->json([
+                                    'status' => 'failed',
+                                    'message' => $th->getMessage(),
+                                    'nama_siswa' => $siswa->nama_siswa,
+                                    'nisn' => $siswa->nisn,
+                                    'jurusan' => $siswa->jurusan->nama_jurusan,
+                                    'waktu' => Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s')
+                                ]);
+                            }
+                        } else if (!$absensi && $now >= $jdw['mulai'] && $now >= $jdw['selesai'] && $now <= $jdw['telat']) {
+                            try {
+                                DB::beginTransaction();
+
+                                Absensi::create([
+                                    'device_id' => $device->id,
+                                    'jadwal_id' => $jdw['id'],
+                                    'siswa_id' => $siswa->id,
+                                    'tanggal' => $waktu,
+                                    'keterangan' => 'Telat'
+                                ]);
+
+                                History::create([
+                                    'device_id' => $device->id,
+                                    'keterangan' => 'Telat waktu ' . $jdw['nama_jadwal']
                                 ]);
 
                                 DB::commit();
