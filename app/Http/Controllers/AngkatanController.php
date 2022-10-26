@@ -20,7 +20,7 @@ class AngkatanController extends Controller
         $angkatan = Angkatan::get();
         $title = 'Data Angkatan';
 
-        return view('Angkatan.index', compact('title', 'angkatan'));
+        return view('angkatan.index', compact('title', 'angkatan'));
     }
 
     public function create()
@@ -30,7 +30,7 @@ class AngkatanController extends Controller
         $action = route('angkatan.store');
         $method = 'POST';
 
-        return view('Angkatan.form', compact('angkatan', 'title', 'action', 'method'));
+        return view('angkatan.form', compact('angkatan', 'title', 'action', 'method'));
     }
 
     public function store(CreateAngkatanRequest $createAngkatanRequest)
@@ -72,7 +72,7 @@ class AngkatanController extends Controller
 
             DB::commit();
 
-            return redirect()->route('Angkatan.index')->with('success', 'Angkatan berhasil diubah');
+            return redirect()->route('angkatan.index')->with('success', 'Angkatan berhasil diubah');
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->with('error', $th->getMessage());
