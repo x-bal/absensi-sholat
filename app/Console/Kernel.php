@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('absensi')->everyMinute();
+        $schedule->command('absensi:command')->everyMinute();
     }
 
     /**

@@ -17,7 +17,7 @@ class AbsensiCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'absensi';
+    protected $signature = 'absensi:command';
 
     /**
      * The console command description.

@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
     // Route Absensi
     Route::get('/absensi/export', [AbsensiController::class, 'export'])->name('absensi.export');
     Route::get('/absensi/rekap', [AbsensiController::class, 'rekap'])->name('absensi.rekap');
-    Route::resource('absensi', AbsensiController::class);
+    Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
 });
 
 
