@@ -66,7 +66,6 @@ Route::middleware('auth')->group(function () {
 
 // Route Install
 Route::get('/exec', function () {
-    Artisan::call('key:generate');
-    Artisan::call('migrate:fresh');
-    Artisan::call('db:seed');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
 });
