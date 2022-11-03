@@ -49,26 +49,28 @@ class AbsensiCommand extends Command
             }
         }
 
-        $time = Carbon::parse($jdw['telat'])->addMinute(5)->format('H:i');
+        if ($jdw != null) {
+            $time = Carbon::parse($jdw['telat'])->addMinute(5)->format('H:i');
 
-        if ($now == $time) {
-            foreach ($siswa as $sw) {
-                $absensi = Absensi::whereDate('tanggal', $tanggal)->where('jadwal_id', $jdw['id'])->where('siswa_id', $sw->id)->first();
+            if ($now == $time) {
+                foreach ($siswa as $sw) {
+                    $absensi = Absensi::whereDate('tanggal', $tanggal)->where('jadwal_id', $jdw['id'])->where('siswa_id', $sw->id)->first();
 
-                if (!$absensi) {
-                    try {
-                        DB::beginTransaction();
-                        Absensi::create([
-                            'device_id' => 1,
-                            'siswa_id' => $sw->id,
-                            'jadwal_id' => $jdw['id'],
-                            'tanggal' => $tanggal,
-                            'keterangan' => 'Tidak Hadir'
-                        ]);
-                        DB::commit();
-                    } catch (\Throwable $th) {
-                        DB::rollBack();
-                        Log::write($th->getMessage());
+                    if (!$absensi) {
+                        try {
+                            DB::beginTransaction();
+                            Absensi::create([
+                                'device_id' => 1,
+                                'siswa_id' => $sw->id,
+                                'jadwal_id' => $jdw['id'],
+                                'tanggal' => $tanggal,
+                                'keterangan' => 'Tidak Hadir'
+                            ]);
+                            DB::commit();
+                        } catch (\Throwable $th) {
+                            DB::rollBack();
+                            Log::write($th->getMessage());
+                        }
                     }
                 }
             }
