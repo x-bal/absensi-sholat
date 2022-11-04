@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/get-mode', [ApiController::class, 'getmode']);
 Route::get('/add-card', [ApiController::class, 'addcard']);
 Route::get('/absensi', [ApiController::class, 'absensi']);
+Route::get('/time', [ApiController::class, 'time']);
