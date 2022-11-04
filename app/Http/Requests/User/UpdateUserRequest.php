@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string',
             // 'password' => '',
             'level' => 'required|string',
-            'foto' => 'mimes:jpg, jpeg, png'
+            'foto' => 'mimes:jpg,jpeg,png'
         ];
     }
 }
