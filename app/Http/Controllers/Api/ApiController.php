@@ -247,6 +247,9 @@ class ApiController extends Controller
     {
         $now = Carbon::now('Asia/Jakarta')->format('Y,m,d,H,i,s');
 
-        return $now;
+        return response()->json([
+            'status' => 'success',
+            'time' => $now
+        ]);
     }
 }
