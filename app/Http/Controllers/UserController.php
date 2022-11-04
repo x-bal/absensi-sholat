@@ -87,7 +87,7 @@ class UserController extends Controller
                 $fotoUrl = $user->foto;
             }
 
-            $attr['password'] = $updateUserRequest->has('password') ? bcrypt($updateUserRequest->password) : $user->password;
+            $attr['password'] = $updateUserRequest->password ? bcrypt($updateUserRequest->password) : $user->password;
             $attr['foto'] = $fotoUrl;
 
             $user->update($attr);
